@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from '../components/Form';
-import LWSLogo from '../ui/LWSLogo';
-import setPageTitle from '../utils/setPageTitle';
+import AdminLoginForm from '../../components/_admin/AdminLoginForm';
+import LWSLogo from '../../ui/LWSLogo';
+import setPageTitle from '../../utils/setPageTitle';
 
 function AdminLogin() {
   setPageTitle('Admin Login');
@@ -12,10 +12,10 @@ function AdminLogin() {
         <div className="p-6">
           <LWSLogo />
           <h2 className="mt-6 text-center text-2xl font-extrabold text-slate-100">
-            Sign in to Student/Admin Account
+            Sign in as Admin Account
           </h2>
         </div>
-        <Form />
+        <AdminLoginForm />
       </div>
     </section>
   );
