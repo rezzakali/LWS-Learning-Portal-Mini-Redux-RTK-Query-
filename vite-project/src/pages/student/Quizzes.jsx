@@ -17,8 +17,6 @@ function Quizzes() {
   const { myArr } = useSelector((state) => state.quiz);
   const [error, setError] = useState('');
 
-  console.log(location);
-
   const { user: loggedInUser } = useSelector((state) => state.auth);
   const { name: loggedInUserName, id: loggedInUserId } = loggedInUser || {};
 

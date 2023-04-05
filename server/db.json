@@ -231,6 +231,18 @@
       "totalWrong": 1,
       "totalMark": 10,
       "mark": 5
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 1,
+      "totalWrong": 1,
+      "totalMark": 10,
+      "mark": 5,
+      "id": 2
     }
   ]
 }
