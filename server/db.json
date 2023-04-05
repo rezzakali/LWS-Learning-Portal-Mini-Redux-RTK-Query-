@@ -70,12 +70,12 @@
       "createdAt": "2023-02-24T17:59:00.000Z"
     },
     {
-      "title": "What is Coding? How to Learn as Beginner? 2022",
+      "title": "What is Coding? How to Learn as Beginner? 2022 by Apna college Shrada Didi",
       "description": "Are you worried about placements/internships? Want to prepare for companies",
       "url": "https://www.youtube.com/embed/ToZSFHUJdHM",
       "views": "135k",
       "duration": "5:17",
-      "createdAt": "2023-04-05T15:39:39.870Z",
+      "createdAt": "2023-04-05T17:07:03.540Z",
       "id": 3
     }
   ],
@@ -217,6 +217,18 @@
       "mark": 50,
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
       "status": "published"
+    },
+    {
+      "student_id": 2,
+      "student_name": "Saad Hasan",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "createdAt": "2023-04-05T17:25:18.998Z",
+      "totalMark": 100,
+      "mark": 0,
+      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
+      "status": "pending",
+      "id": 3
     }
   ],
   "quizMark": [
