@@ -14,7 +14,7 @@ function VideoPlayList() {
   if (!isLoading && !isError && videos?.length > 0)
     content = videos?.map((video) => (
       <div
-        className="w-full flex flex-row gap-2 cursor-pointer hover:bg-slate-900 p-2"
+        className="w-full flex flex-row gap-2 cursor-pointer hover:bg-slate-900 p-2 rounded bg-primary font-medium text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] col-span-full lg:col-auto max-h-[530px] overflow-y-auto bg-secondary p-4 rounded-md border border-slate-50/10 divide-y divide-slate-600/30 h-auto"
         key={video.id}
       >
         <svg
@@ -23,7 +23,7 @@ function VideoPlayList() {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-6 h-6 stroke-cyan-500 stroke-1 hover:stroke-2"
         >
           <path
             strokeLinecap="round"

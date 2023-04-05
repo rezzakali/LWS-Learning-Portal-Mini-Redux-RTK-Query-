@@ -172,12 +172,22 @@ function AssignmentAndQuizButton({ initialVideo }) {
       {/* assignment modal end from here */}
 
       {/* assignment button start from here */}
-      <button
-        className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-        onClick={() => setShowAssignmentModal(true)}
-      >
-        {isAssignemnt ? 'এসাইনমেন্ট' : 'No Assignment'}
-      </button>
+      {isAssignemnt ? (
+        <button
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
+          onClick={() => setShowAssignmentModal(true)}
+        >
+          এসাইনমেন্ট
+        </button>
+      ) : (
+        <button
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
+          // onClick={() => setShowAssignmentModal(true)}
+        >
+          No Assignment
+        </button>
+      )}
+
       {/* assignment button end from here */}
 
       {/* quiz result modal start*/}
@@ -243,20 +253,23 @@ function AssignmentAndQuizButton({ initialVideo }) {
       {/* quiz modal end */}
 
       {/* quiz result button start from here */}
-      <button
-        className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
-        onClick={() => setShowModal(true)}
-      >
-        কুইজের ফলাফল
-      </button>
-      {/* quiz result button end from here */}
+      {isParticipate ? (
+        <button
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
+          onClick={() => setShowModal(true)}
+        >
+          কুইজের ফলাফল
+        </button>
+      ) : (
+        <button
+          onClick={() => handleNavigateToQuizPage(finalId)}
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
+        >
+          কুইজে অংশগ্রহণ করুন
+        </button>
+      )}
 
-      <button
-        onClick={() => handleNavigateToQuizPage(finalId)}
-        className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-      >
-        কুইজে অংশগ্রহণ করুন
-      </button>
+      {/* quiz result button end from here */}
     </div>
   );
 }

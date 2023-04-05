@@ -122,7 +122,7 @@ function LeaderBoard() {
                   <TopResult key={user.id} user={user} demoFunc={demoFunc} />
                 ))}
 
-                {sortedUsers?.splice(0, 20).map((user, index) => (
+                {sortedUsers?.splice(0, 20)?.map((user, index) => (
                   <RankResult key={index} user={user} rank={user.rank} />
                 ))}
               </tbody>
