@@ -50,8 +50,8 @@
       "id": 7
     },
     {
-      "email": "rezzakali390@gmail.com",
-      "password": "$2a$10$8/xwbiSVmbfuYVV2KONqyeJfVtadlcfhIJxp2vp1V/ZXqxb6aaosm",
+      "email": "myrezzakalirk@gmail.com",
+      "password": "$2a$10$feREJMNdNRVwG84Q8Y.zuO3gExEDw1LrEeRdMKcUCaIXTVYEIif2a",
       "role": "student",
       "name": "Rezzak Ali",
       "id": 8
@@ -75,15 +75,6 @@
       "views": "91.2K",
       "duration": "31:30",
       "createdAt": "2023-02-24T17:59:00.000Z"
-    },
-    {
-      "title": "What is Coding? How to Learn as Beginner? 2022 by Apna college Shrada Didi",
-      "description": "Are you worried about placements/internships? Want to prepare for companies",
-      "url": "https://www.youtube.com/embed/ToZSFHUJdHM",
-      "views": "135k",
-      "duration": "5:17",
-      "createdAt": "2023-04-05T17:07:03.540Z",
-      "id": 3
     }
   ],
   "assignments": [
@@ -92,13 +83,6 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "video_id": 1,
       "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
-      "totalMark": 100
-    },
-    {
-      "id": 2,
-      "title": "Assignment 2 - Implement Best Practices",
-      "video_id": 2,
-      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
       "totalMark": 100
     }
   ],
@@ -200,6 +184,42 @@
       "mark": 0,
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
       "status": "pending"
+    },
+    {
+      "student_id": 8,
+      "student_name": "Rezzak Ali",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "createdAt": "2023-04-06T13:46:11.574Z",
+      "totalMark": 100,
+      "mark": 10,
+      "repo_link": "https://github.com/rezzakali?tab=repositories",
+      "status": "published",
+      "id": 2
+    },
+    {
+      "student_id": 8,
+      "student_name": "Rezzak Ali",
+      "assignment_id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "createdAt": "2023-04-06T13:46:34.071Z",
+      "totalMark": 100,
+      "mark": 100,
+      "repo_link": "https://github.com/rezzakali?tab=repositories",
+      "status": "published",
+      "id": 3
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "createdAt": "2023-04-06T17:17:28.745Z",
+      "totalMark": 100,
+      "mark": 0,
+      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
+      "status": "pending",
+      "id": 4
     }
   ],
   "quizMark": [
@@ -214,6 +234,42 @@
       "totalWrong": 1,
       "totalMark": 10,
       "mark": 5
+    },
+    {
+      "student_id": 8,
+      "student_name": "Rezzak Ali",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 2,
+      "totalWrong": 0,
+      "totalMark": 10,
+      "mark": 10,
+      "id": 2
+    },
+    {
+      "student_id": 8,
+      "student_name": "Rezzak Ali",
+      "video_id": 2,
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 3
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 2,
+      "totalWrong": 0,
+      "totalMark": 10,
+      "mark": 10,
+      "id": 4
     }
   ]
 }
