@@ -193,42 +193,6 @@
       "mark": 0,
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
       "status": "pending"
-    },
-    {
-      "id": 2,
-      "student_id": 2,
-      "student_name": "Saad Hasan",
-      "assignment_id": 1,
-      "title": "Assignment 2 - Implement Best Practices",
-      "createdAt": "2021-01-15T15:17:01.727Z",
-      "totalMark": 100,
-      "mark": 100,
-      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "published"
-    },
-    {
-      "id": 2,
-      "student_id": 3,
-      "student_name": "Akash Ahmed",
-      "assignment_id": 1,
-      "title": "Assignment 2 - Implement Best Practices",
-      "createdAt": "2021-01-15T15:17:01.727Z",
-      "totalMark": 100,
-      "mark": 50,
-      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "published"
-    },
-    {
-      "student_id": 2,
-      "student_name": "Saad Hasan",
-      "assignment_id": 1,
-      "title": "Assignment 1 - Implement Debounce Function",
-      "createdAt": "2023-04-05T17:25:18.998Z",
-      "totalMark": 100,
-      "mark": 0,
-      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "pending",
-      "id": 3
     }
   ],
   "quizMark": [
@@ -243,18 +207,6 @@
       "totalWrong": 1,
       "totalMark": 10,
       "mark": 5
-    },
-    {
-      "student_id": 3,
-      "student_name": "Akash Ahmed",
-      "video_id": 1,
-      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
-      "totalQuiz": 2,
-      "totalCorrect": 1,
-      "totalWrong": 1,
-      "totalMark": 10,
-      "mark": 5,
-      "id": 2
     }
   ]
 }

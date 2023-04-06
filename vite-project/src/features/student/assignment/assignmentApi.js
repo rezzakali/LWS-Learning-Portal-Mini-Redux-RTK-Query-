@@ -17,7 +17,7 @@ const assignmentApi = apiSlice.injectEndpoints({
         body: {
           student_id: id,
           student_name: data.student_name,
-          assignment_id: 1,
+          assignment_id: data.assignmentId,
           title: data.title,
           createdAt: new Date().toISOString(),
           totalMark: 100,
@@ -27,8 +27,37 @@ const assignmentApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+
+    async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+      try {
+        const response = await queryFulfilled;
+
+        dispatch(
+          apiSlice.util.updateQueryData(
+            'getAssignment',
+            arg.data.finalId,
+            (draft) => {
+              draft.push(response.data);
+            }
+          )
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // check the assignment is already submitted or not by the logged in user
+    checkAssignmentSubmitted: builder.query({
+      query: ({ studentId, assignmentId, studentName }) => ({
+        url: `/assignmentMark?student_id=${studentId}&assignment_id=${assignmentId}&student_name=${studentName}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useGetAssignmentQuery, useSubmitAssignmentMutation } =
-  assignmentApi;
+export const {
+  useGetAssignmentQuery,
+  useSubmitAssignmentMutation,
+  useCheckAssignmentSubmittedQuery,
+} = assignmentApi;

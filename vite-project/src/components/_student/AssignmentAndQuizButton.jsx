@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  useCheckAssignmentSubmittedQuery,
   useGetAssignmentQuery,
   useSubmitAssignmentMutation,
 } from '../../features/student/assignment/assignmentApi';
 
-import { useFindUserInQuizMarkQuery } from '../../../../../Learning-Portal-Application/vite-project/src/features/student/quiz/quizApi';
+import { useFindUserInQuizMarkQuery } from '../../features/student/quiz/quizApi';
 import Error from '../../ui/Error';
 
 function AssignmentAndQuizButton({ initialVideo }) {
@@ -20,7 +21,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
   const { id: loggedInUserId, name: loggedInUserName } = user || {};
 
   //   state for assignment
-  const [isAssignemnt, setIsAssignment] = useState(false);
+  const [isAssignement, setIsAssignment] = useState(false);
 
   //   for repository (assignment submission local state)
   const [repo, setRepo] = useState('');
@@ -68,12 +69,34 @@ function AssignmentAndQuizButton({ initialVideo }) {
   const [assignmentVideoTitle, setAssignmentVideoTitle] = useState('');
 
   //   use effect for assignment submission
+  const assignmentId = assignment?.[0]?.video_id;
+
   useEffect(() => {
     if (assignment && assignment?.length > 0) {
       setAssignmentVideoTitle(assignment[0]?.title);
       setIsAssignment(true);
     }
   }, [assignment, finalId]);
+
+  // check is assignment submitted or not
+  const [isAssignemntSubmitted, setIsAssignmentSubmitted] = useState(false);
+
+  const { data: isAssignemntSubmittedByLoggedInUser } =
+    useCheckAssignmentSubmittedQuery({
+      studentId: loggedInUserId,
+      studentName: loggedInUserName,
+      assignmentId,
+    });
+
+  useEffect(() => {
+    if (
+      isAssignemntSubmittedByLoggedInUser &&
+      isAssignemntSubmittedByLoggedInUser?.length > 0 &&
+      isAssignemntSubmittedByLoggedInUser?.[0]
+    ) {
+      setIsAssignmentSubmitted(true);
+    }
+  }, [isAssignemntSubmittedByLoggedInUser]);
 
   // submit the assignment
   const [
@@ -91,6 +114,8 @@ function AssignmentAndQuizButton({ initialVideo }) {
         repo_link: repo,
         student_name: loggedInUserName,
         title: assignmentVideoTitle,
+        assignmentId,
+        finalId,
       },
     });
   };
@@ -130,7 +155,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
                     className="p-1 ml-auto text-white float-right leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowAssignmentModal(false)}
                   >
-                    <div className="text-white  h-8 w-8 text-xl border border-slate-500/50 rounded -mt-1 hover:text-red-500 transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+                    <div className="text-white h-8 w-8 text-xl border border-slate-500/50 rounded-full -mt-1 hover:text-red-500 transition duration-150 ease-in-out">
                       x
                     </div>
                   </button>
@@ -172,7 +197,8 @@ function AssignmentAndQuizButton({ initialVideo }) {
       {/* assignment modal end from here */}
 
       {/* assignment button start from here */}
-      {isAssignemnt ? (
+
+      {isAssignement && !isAssignemntSubmitted ? (
         <button
           className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
           onClick={() => setShowAssignmentModal(true)}
@@ -181,10 +207,10 @@ function AssignmentAndQuizButton({ initialVideo }) {
         </button>
       ) : (
         <button
-          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
-          // onClick={() => setShowAssignmentModal(true)}
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full text-red-400"
+          disabled={!isAssignement}
         >
-          No Assignment
+          এসাইনমেন্ট নেই
         </button>
       )}
 
