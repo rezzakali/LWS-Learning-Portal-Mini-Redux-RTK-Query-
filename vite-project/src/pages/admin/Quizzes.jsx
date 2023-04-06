@@ -7,7 +7,7 @@ import DashLoading from '../../ui/DashLoading';
 import setPageTitle from '../../utils/setPageTitle';
 
 function Quizzes() {
-  setPageTitle('Admin Videos');
+  setPageTitle('Admin Quizzes');
   const navigate = useNavigate();
 
   const { data: quizzes, isLoading, isError, error } = useGetQuizzesQuery();

@@ -7,8 +7,10 @@ import {
 } from '../../features/admin/assignment/assignmentApi';
 import { useGetVideosQuery } from '../../features/admin/videos/videosApi';
 import CommonError from '../../ui/CommonError';
+import setPageTitle from '../../utils/setPageTitle';
 
 function AddAssignment() {
+  setPageTitle('Add Assignment');
   const location = useLocation();
 
   const {

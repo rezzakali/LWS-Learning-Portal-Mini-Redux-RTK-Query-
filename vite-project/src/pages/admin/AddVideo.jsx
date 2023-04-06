@@ -5,8 +5,10 @@ import {
   useEditVideoMutation,
 } from '../../features/admin/videos/videosApi';
 import Error from '../../ui/Error';
+import setPageTitle from '../../utils/setPageTitle';
 
 function AddVideo() {
+  setPageTitle('Add Video');
   const location = useLocation();
   const { data } = location?.state || {};
   const {

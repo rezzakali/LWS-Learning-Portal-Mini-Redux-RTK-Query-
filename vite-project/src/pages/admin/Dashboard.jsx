@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import setPageTitle from '../../utils/setPageTitle';
 
 function Dashboard() {
-  setPageTitle('Admin');
+  setPageTitle('Dashboard');
 
   return (
     <section className="py-6 bg-primary">

@@ -9,8 +9,10 @@ import {
   useGetVideoQuery,
   useGetVideosQuery,
 } from '../../features/student/videos/videosApi';
+import setPageTitle from '../../utils/setPageTitle';
 
 function CoursePlayer() {
+  setPageTitle('Course Player');
   const params = useParams();
 
   // fetch videos

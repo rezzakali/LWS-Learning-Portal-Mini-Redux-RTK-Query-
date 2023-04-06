@@ -21,7 +21,7 @@ function AssignmentRow({ assignment }) {
   };
 
   return (
-    <tr>
+    <tr className="hover:bg-[#0f172a]">
       <td className="table-td">{title}</td>
       <td className="table-td">{video_title}</td>
       <td className="table-td">{totalMark}</td>

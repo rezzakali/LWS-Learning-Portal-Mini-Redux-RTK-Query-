@@ -9,7 +9,7 @@ import CommonError from '../../ui/CommonError';
 import setPageTitle from '../../utils/setPageTitle';
 
 function AddQuiz() {
-  setPageTitle('Admin Add Quiz');
+  setPageTitle('Add Quiz');
 
   const location = useLocation();
   const { data } = location?.state || {};
@@ -193,6 +193,7 @@ function AddQuiz() {
               placeholder="Enter the question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
+              required
             />
           </div>
         </div>
@@ -319,6 +320,7 @@ function AddQuiz() {
               id="grid-related-video"
               value={relatedVideo}
               onChange={(e) => setRelatedVideo(e.target.value)}
+              required
             >
               <option value="" hidden defaultValue>
                 Select related video

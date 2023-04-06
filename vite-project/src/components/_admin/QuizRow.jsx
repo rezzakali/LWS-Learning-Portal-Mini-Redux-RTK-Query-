@@ -20,12 +20,20 @@ function QuizRow({ quiz }) {
     deleteQuiz(id);
   };
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + '...';
+    } else {
+      return str;
+    }
+  };
+
   return (
-    <tr>
+    <tr className="hover:bg-[#0f172a]">
       <td className="table-td">
-        Quiz {id} - {question}
+        Quiz {id} - {truncateString(question, 70)}
       </td>
-      <td className="table-td">{video_title}</td>
+      <td className="table-td">{truncateString(video_title, 70)}</td>
       <td className="table-td flex gap-x-2 justify-center">
         <svg
           fill="none"
