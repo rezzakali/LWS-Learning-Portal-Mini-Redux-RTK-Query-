@@ -26,25 +26,25 @@ const assignmentApi = apiSlice.injectEndpoints({
           status: 'pending',
         },
       }),
+
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const response = await queryFulfilled;
+
+          dispatch(
+            apiSlice.util.updateQueryData(
+              'getAssignment',
+              arg.data.finalId,
+              (draft) => {
+                draft.push(response.data);
+              }
+            )
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
-
-    async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-      try {
-        const response = await queryFulfilled;
-
-        dispatch(
-          apiSlice.util.updateQueryData(
-            'getAssignment',
-            arg.data.finalId,
-            (draft) => {
-              draft.push(response.data);
-            }
-          )
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    },
 
     // check the assignment is already submitted or not by the logged in user
     checkAssignmentSubmitted: builder.query({

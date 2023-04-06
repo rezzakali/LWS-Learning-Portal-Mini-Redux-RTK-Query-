@@ -7,6 +7,7 @@ import {
   useSubmitAssignmentMutation,
 } from '../../features/student/assignment/assignmentApi';
 
+import { useGetAssignmentMarkQuery } from '../../features/student/assignmentMark/assignmentMarkApi';
 import { useFindUserInQuizMarkQuery } from '../../features/student/quiz/quizApi';
 import Error from '../../ui/Error';
 
@@ -16,14 +17,14 @@ function AssignmentAndQuizButton({ initialVideo }) {
   const { id } = initialVideo || {};
   const finalId = params?.id === undefined ? Number(id) : Number(params?.id);
 
-  //   auth user info
+  //  auth user info
   const { user } = useSelector((state) => state.auth);
   const { id: loggedInUserId, name: loggedInUserName } = user || {};
 
-  //   state for assignment
+  // state for assignment
   const [isAssignement, setIsAssignment] = useState(false);
 
-  //   for repository (assignment submission local state)
+  // for repository (assignment submission local state)
   const [repo, setRepo] = useState('');
   const [error, setError] = useState('');
 
@@ -139,6 +140,32 @@ function AssignmentAndQuizButton({ initialVideo }) {
     });
   };
 
+  // for fetching the assignment mark result if the user is already submitted
+  const [showAssignmentResultModal, setShowAssignmentResultModal] =
+    useState(false);
+  const [assignemntSubmittedUserInfo, setAssignmentSubmittedUserInfo] =
+    useState(null);
+
+  const { data: assignmentMarkResult } = useGetAssignmentMarkQuery({
+    id: loggedInUserId,
+    student_name: loggedInUserName,
+    assignmentId,
+  });
+  useEffect(() => {
+    if (assignmentMarkResult && assignmentMarkResult.length > 0) {
+      setAssignmentSubmittedUserInfo(assignmentMarkResult[0]);
+    }
+  }, [assignmentMarkResult]);
+
+  const {
+    student_name: assignmentSubmittedUserName,
+    title,
+    totalMark: assignemntSubmittedMark,
+    repo_link: assignemntSubmittedRepoLink,
+    mark: assignemntSubmittedMarkObtained,
+    status,
+  } = assignemntSubmittedUserInfo || {};
+
   return (
     <div className="flex gap-4">
       {/* assignment modal start from here */}
@@ -207,10 +234,10 @@ function AssignmentAndQuizButton({ initialVideo }) {
         </button>
       ) : (
         <button
-          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full text-red-400"
-          disabled={!isAssignement}
+          className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full"
+          onClick={() => setShowAssignmentResultModal(true)}
         >
-          এসাইনমেন্ট নেই
+          এসাইনমেন্ট ফলাফল
         </button>
       )}
 
@@ -277,6 +304,70 @@ function AssignmentAndQuizButton({ initialVideo }) {
         ) : null}
       </>
       {/* quiz modal end */}
+
+      {/* assignment result modal start from here */}
+      <>
+        {showAssignmentResultModal ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none">
+              <div className="relative w-auto my-6 mx-auto">
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-auto bg-white outline-none focus:outline-none bg-primary">
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t">
+                    <h3 className="text-xl font-semibold">এসাইনমেন্ট ফলাফল</h3>
+                  </div>
+                  {/*body*/}
+                  <div className="relative p-6 flex-auto text-lg w-auto">
+                    <ul>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        {' '}
+                        <strong>You Obtained : </strong>{' '}
+                        {assignemntSubmittedMarkObtained}
+                      </li>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        {' '}
+                        <strong>Status : </strong> {status}
+                      </li>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        <strong>Assignment Title : </strong>
+                        {title}
+                      </li>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        <strong>Your Name : </strong>
+                        {assignmentSubmittedUserName}
+                      </li>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        {' '}
+                        <strong>Total Marks : </strong>{' '}
+                        {assignemntSubmittedMark}
+                      </li>
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                        {' '}
+                        <strong>Total Marks : </strong>{' '}
+                        {assignemntSubmittedRepoLink}
+                      </li>
+                    </ul>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-3 border-t border-slate-600/50">
+                    <button
+                      className="rounded bg-primary text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full px-10 py-2 m-3"
+                      type="button"
+                      onClick={() => setShowAssignmentResultModal(false)}
+                    >
+                      Okay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+      </>
+
+      {/* assignemnt result modal end from here */}
 
       {/* quiz result button start from here */}
       {isParticipate ? (
