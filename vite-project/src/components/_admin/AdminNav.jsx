@@ -18,9 +18,13 @@ function AdminNav() {
   }
 
   const handleLoggedOut = () => {
+    localStorage.clear('auth');
+    window.location.reload();
     dispatch(adminLoggedOut());
-    localStorage.removeItem('auth');
-    navigate('/');
+    localStorage.clear('auth');
+    setTimeout(() => {
+      navigate('/');
+    }, 70);
   };
 
   return (
@@ -36,7 +40,7 @@ function AdminNav() {
         <div className="flex items-center gap-3">
           <h2 className="font-bold">{adminName}</h2>
           <button
-            className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium"
+            className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             onClick={handleLoggedOut}
           >
             <svg

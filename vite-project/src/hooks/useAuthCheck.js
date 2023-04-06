@@ -7,10 +7,11 @@ const useAuthCheck = () => {
   const [authCheck, setAuthCheck] = useState(false);
 
   useEffect(() => {
-    const auth = localStorage?.getItem('auth');
+    const auth = localStorage.getItem('auth');
 
     if (auth) {
       const isAuth = JSON.parse(auth);
+
       if (isAuth?.accessToken && isAuth?.user) {
         dispatch(
           Login({

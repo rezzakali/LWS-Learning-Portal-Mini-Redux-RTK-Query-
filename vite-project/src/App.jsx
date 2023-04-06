@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import StudentNav from './components/_student/StudentNav';
 import Login from './pages/Login';
@@ -8,7 +8,6 @@ import Quizzes from './pages/student/Quizzes';
 import Register from './pages/student/Register';
 
 // for admin
-import { useSelector } from 'react-redux';
 import AdminNav from './components/_admin/AdminNav';
 import useAuthCheck from './hooks/useAuthCheck';
 import AddAssignment from './pages/admin/AddAssignment';
@@ -20,19 +19,41 @@ import AssignmentMark from './pages/admin/AssignmentMark';
 import Dashboard from './pages/admin/Dashboard';
 import QuizzesAdmin from './pages/admin/Quizzes';
 import Videos from './pages/admin/Videos';
+import AdminPrivateRoute from './utils/AdminPrivateRoute';
+import AdminPublicRoute from './utils/AdminPublicRoute';
 import PrivateRoute from './utils/PrivateRoute';
+import PublicRoute from './utils/PublicRoute';
 
-function App() {
+function App({ hideLoader }) {
+  useEffect(() => {
+    hideLoader();
+  }, []);
+
   const authCheck = useAuthCheck();
-  const auth = useSelector((state) => state?.auth?.user);
+  const auth = localStorage?.getItem('auth');
+  const authData = JSON.parse(auth);
 
   return (
     <>
-      {auth?.role === 'student' ? <StudentNav /> : ''}
+      {authData?.user?.role === 'student' && <StudentNav />}
 
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/leaderboard"
           element={
@@ -68,29 +89,106 @@ function App() {
       </Routes>
 
       <>
-        {auth?.role === 'admin' ? <AdminNav /> : ''}
+        {authData?.user?.role === 'admin' && <AdminNav />}
 
-        {auth?.role === 'admin' ? (
-          <Routes>
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/admin/assignment" element={<Assignment />} />
-            <Route path="/admin/assignmentmark" element={<AssignmentMark />} />
-            <Route path="/admin/quizzes" element={<QuizzesAdmin />} />
-            <Route path="/admin/videos" element={<Videos />} />
-            <Route path="/admin/addvideo" element={<AddVideo />} />
-            <Route path={`/admin/editvideo/:id`} element={<AddVideo />} />
-            <Route path="/admin/add_assignment" element={<AddAssignment />} />
-            <Route
-              path={`/admin/edit_assignment/:id`}
-              element={<AddAssignment />}
-            />
-            <Route path="/admin/addquiz" element={<AddQuiz />} />
-            <Route path={`/admin/addquiz/:id`} element={<AddQuiz />} />
-          </Routes>
-        ) : (
-          ''
-        )}
+        <Routes>
+          <Route
+            path="/admin"
+            element={
+              <AdminPublicRoute>
+                <AdminLogin />
+              </AdminPublicRoute>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminPrivateRoute>
+                <Dashboard />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/assignment"
+            element={
+              <AdminPrivateRoute>
+                <Assignment />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/assignmentmark"
+            element={
+              <AdminPrivateRoute>
+                <AssignmentMark />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/quizzes"
+            element={
+              <AdminPrivateRoute>
+                <QuizzesAdmin />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/videos"
+            element={
+              <AdminPrivateRoute>
+                <Videos />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/addvideo"
+            element={
+              <AdminPrivateRoute>
+                <AddVideo />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path={`/admin/editvideo/:id`}
+            element={
+              <AdminPrivateRoute>
+                <AddVideo />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/add_assignment"
+            element={
+              <AdminPrivateRoute>
+                <AddAssignment />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path={`/admin/edit_assignment/:id`}
+            element={
+              <AdminPrivateRoute>
+                <AddAssignment />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/addquiz"
+            element={
+              <AdminPrivateRoute>
+                <AddQuiz />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path={`/admin/addquiz/:id`}
+            element={
+              <AdminPrivateRoute>
+                <AddQuiz />
+              </AdminPrivateRoute>
+            }
+          />
+        </Routes>
       </>
     </>
   );

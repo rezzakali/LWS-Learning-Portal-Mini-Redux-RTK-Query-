@@ -48,6 +48,13 @@
       "role": "student",
       "name": "Arif",
       "id": 7
+    },
+    {
+      "email": "rezzakali390@gmail.com",
+      "password": "$2a$10$8/xwbiSVmbfuYVV2KONqyeJfVtadlcfhIJxp2vp1V/ZXqxb6aaosm",
+      "role": "student",
+      "name": "Rezzak Ali",
+      "id": 8
     }
   ],
   "videos": [

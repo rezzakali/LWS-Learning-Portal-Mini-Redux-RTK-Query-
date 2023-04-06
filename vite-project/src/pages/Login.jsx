@@ -4,7 +4,7 @@ import LWSLogo from '../ui/LWSLogo';
 import setPageTitle from '../utils/setPageTitle';
 
 function Login() {
-  setPageTitle('Login');
+  setPageTitle('login');
 
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">

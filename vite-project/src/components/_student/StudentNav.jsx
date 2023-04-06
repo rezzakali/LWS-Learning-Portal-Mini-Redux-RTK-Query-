@@ -9,9 +9,12 @@ function StudentNav() {
   const navigate = useNavigate();
 
   const handleLoggedOut = () => {
+    window.location.reload();
     dispatch(studentLoggedOut());
-    localStorage.removeItem('auth');
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+    }, 100);
+    localStorage.clear('auth');
   };
 
   let name = '';

@@ -15,13 +15,6 @@ function RegisterForm() {
   const [register, { isSuccess, error: resError, isLoading }] =
     useRegisterMutation();
 
-  const reset = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
@@ -38,7 +31,10 @@ function RegisterForm() {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/player');
+      window.location.reload();
+      setTimeout(() => {
+        navigate('/courseplayer');
+      }, 50);
     }
     if (resError) {
       setError(resError?.data);
@@ -122,7 +118,7 @@ function RegisterForm() {
           <div className="text-sm">
             <Link
               to="/"
-              className="font-medium text-violet-600 hover:text-violet-500 uppercase"
+              className="font-medium text-violet-600 hover:text-violet-500 capitalize"
             >
               Already have an account!
             </Link>
@@ -131,7 +127,7 @@ function RegisterForm() {
         <div>
           <button
             type="submit"
-            className="rounded bg-primary px-8 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-lg group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white mb-3"
+            className="rounded bg-primary px-8 py-2 text-sm font-medium capitalize leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-lg group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white mb-3"
             disabled={isLoading}
           >
             Create Account
