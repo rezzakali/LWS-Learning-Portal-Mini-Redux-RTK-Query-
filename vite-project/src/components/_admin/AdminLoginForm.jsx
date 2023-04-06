@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../features/auth/authApi';
-import Error from '../ui/Error';
+import { useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../../features/auth/authApi';
+import Error from '../../ui/Error';
 
-function Form() {
+function AdminLoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,7 +24,7 @@ function Form() {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/courseplayer');
+      navigate('/admin/dashboard');
     }
     if (isError) {
       setError(resError?.data);
@@ -70,17 +70,6 @@ function Form() {
         </div>
       </div>
 
-      <div className="flex items-center justify-end">
-        <div className="text-sm">
-          <Link
-            to="/register"
-            className="font-medium text-violet-600 hover:text-violet-500 uppercase"
-          >
-            Create New Account
-          </Link>
-        </div>
-      </div>
-
       <div>
         <button
           type="submit"
@@ -95,4 +84,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default AdminLoginForm;

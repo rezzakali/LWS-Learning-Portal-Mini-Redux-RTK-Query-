@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from '../components/Form';
-import LWSLogo from '../ui/LWSLogo';
-import setPageTitle from '../utils/setPageTitle';
+import AdminLoginForm from '../../components/_admin/AdminLoginForm';
+import LWSLogo from '../../ui/LWSLogo';
+import setPageTitle from '../../utils/setPageTitle';
 
-function Login() {
-  setPageTitle('Login');
+function AdminLogin() {
+  setPageTitle('Admin Login');
 
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
@@ -12,13 +12,13 @@ function Login() {
         <div className="p-6">
           <LWSLogo />
           <h2 className="mt-6 text-center text-2xl font-extrabold text-slate-100">
-            Sign in as a Student Account
+            Sign in as Admin Account
           </h2>
         </div>
-        <Form />
+        <AdminLoginForm />
       </div>
     </section>
   );
 }
 
-export default Login;
+export default AdminLogin;

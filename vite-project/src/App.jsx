@@ -14,6 +14,7 @@ import useAuthCheck from './hooks/useAuthCheck';
 import AddAssignment from './pages/admin/AddAssignment';
 import AddQuiz from './pages/admin/AddQuiz';
 import AddVideo from './pages/admin/AddVideo';
+import AdminLogin from './pages/admin/AdminLogin';
 import Assignment from './pages/admin/Assignment';
 import AssignmentMark from './pages/admin/AssignmentMark';
 import Dashboard from './pages/admin/Dashboard';
@@ -69,26 +70,27 @@ function App() {
       <>
         {auth?.role === 'admin' ? <AdminNav /> : ''}
 
-        {auth?.role === 'admin' ? (
-          <Routes>
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/admin/assignment" element={<Assignment />} />
-            <Route path="/admin/assignmentmark" element={<AssignmentMark />} />
-            <Route path="/admin/quizzes" element={<QuizzesAdmin />} />
-            <Route path="/admin/videos" element={<Videos />} />
-            <Route path="/admin/addvideo" element={<AddVideo />} />
-            <Route path={`/admin/editvideo/:id`} element={<AddVideo />} />
-            <Route path="/admin/add_assignment" element={<AddAssignment />} />
-            <Route
-              path={`/admin/edit_assignment/:id`}
-              element={<AddAssignment />}
-            />
-            <Route path="/admin/addquiz" element={<AddQuiz />} />
-            <Route path={`/admin/addquiz/:id`} element={<AddQuiz />} />
-          </Routes>
-        ) : (
+        {/* {auth?.role === 'admin' ? ( */}
+        <Routes>
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/assignment" element={<Assignment />} />
+          <Route path="/admin/assignmentmark" element={<AssignmentMark />} />
+          <Route path="/admin/quizzes" element={<QuizzesAdmin />} />
+          <Route path="/admin/videos" element={<Videos />} />
+          <Route path="/admin/addvideo" element={<AddVideo />} />
+          <Route path={`/admin/editvideo/:id`} element={<AddVideo />} />
+          <Route path="/admin/add_assignment" element={<AddAssignment />} />
+          <Route
+            path={`/admin/edit_assignment/:id`}
+            element={<AddAssignment />}
+          />
+          <Route path="/admin/addquiz" element={<AddQuiz />} />
+          <Route path={`/admin/addquiz/:id`} element={<AddQuiz />} />
+        </Routes>
+        {/* ) : (
           ''
-        )}
+        )} */}
       </>
     </>
   );
