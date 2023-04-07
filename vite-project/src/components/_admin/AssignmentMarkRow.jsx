@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { useEditAssignmentMarkMutation } from '../../features/admin/assignment_mark/assignmentMarkApi';
 
 function AssignmentMarkRow({ assignmentMark }) {

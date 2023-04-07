@@ -7,7 +7,7 @@ import {
   useSubmitAssignmentMutation,
 } from '../../features/student/assignment/assignmentApi';
 
-import { useGetAssignmentMarkQuery } from '../../features/student/assignmentMark/assignmentMarkApi';
+import { useGetAssignmentMarkStudentQuery } from '../../features/student/assignmentMark/assignmentMarkApi';
 import { useFindUserInQuizMarkQuery } from '../../features/student/quiz/quizApi';
 import Error from '../../ui/Error';
 
@@ -146,7 +146,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
   const [assignemntSubmittedUserInfo, setAssignmentSubmittedUserInfo] =
     useState(null);
 
-  const { data: assignmentMarkResult } = useGetAssignmentMarkQuery({
+  const { data: assignmentMarkResult } = useGetAssignmentMarkStudentQuery({
     id: loggedInUserId,
     student_name: loggedInUserName,
     assignmentId,
@@ -174,7 +174,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
           <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-primary">
             <div className="relative w-auto my-6 mx-auto border border-slate-600/50 rounded">
               {/*content*/}
-              <div className="shadow-lg relative flex flex-col w-full  bg-primary outline-none focus:outline-none">
+              <div className="shadow-lg relative flex flex-col w-full  bg-primary outline-none focus:outline-none bg-primary">
                 {/*header*/}
                 <div className="flex justify-between p-5 items-start border-solid px-5 bg-primary">
                   <h3 className="text-xl font-semibold">Submit Assignment</h3>
@@ -248,17 +248,17 @@ function AssignmentAndQuizButton({ initialVideo }) {
         {showModal ? (
           <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none">
-              <div className="relative w-auto my-6 mx-auto">
+              <div className="relative w-auto my-6 mx-auto bg-primary">
                 {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-primary">
                   {/*header*/}
-                  <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t">
+                  <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t bg-primary">
                     <h3 className="text-xl font-semibold">কুইজের ফলাফল</h3>
                   </div>
                   {/*body*/}
-                  <div className="relative p-6 flex-auto text-lg">
+                  <div className="relative p-6 flex-auto text-lg bg-primary">
                     <ul>
-                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
+                      <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a] ">
                         {' '}
                         <strong>You Obtained : </strong> {mark}
                       </li>
@@ -287,7 +287,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
                     </ul>
                   </div>
                   {/*footer*/}
-                  <div className="flex items-center justify-end p-3 border-t border-slate-600/50">
+                  <div className="flex items-center justify-end p-3 border-t border-slate-600/50 bg-primary">
                     <button
                       className="rounded bg-primary text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full px-10 py-2 m-3"
                       type="button"
@@ -309,16 +309,16 @@ function AssignmentAndQuizButton({ initialVideo }) {
       <>
         {showAssignmentResultModal ? (
           <>
-            <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-primary">
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none ">
               <div className="relative w-auto my-6 mx-auto">
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-auto bg-white outline-none focus:outline-none">
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-auto bg-white outline-none focus:outline-none bg-primary">
                   {/*header*/}
-                  <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t">
+                  <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t bg-primary">
                     <h3 className="text-xl font-semibold">এসাইনমেন্ট ফলাফল</h3>
                   </div>
                   {/*body*/}
-                  <div className="relative p-6 flex-auto text-lg w-auto">
+                  <div className="relative p-6 flex-auto text-lg w-auto bg-primary">
                     <ul>
                       <li className="border-b border-slate-600/50 p-2 hover:bg-[#0f172a]">
                         {' '}
@@ -350,7 +350,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
                     </ul>
                   </div>
                   {/*footer*/}
-                  <div className="flex items-center justify-end p-3 border-t border-slate-600/50">
+                  <div className="flex items-center justify-end p-3 border-t border-slate-600/50 bg-primary">
                     <button
                       className="rounded bg-primary text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] rounded-full px-10 py-2 m-3"
                       type="button"
