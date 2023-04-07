@@ -171,7 +171,7 @@ function AssignmentAndQuizButton({ initialVideo }) {
       {/* assignment modal start from here */}
       {showAssignmentModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-primary">
             <div className="relative w-auto my-6 mx-auto border border-slate-600/50 rounded">
               {/*content*/}
               <div className="shadow-lg relative flex flex-col w-full  bg-primary outline-none focus:outline-none">
@@ -309,10 +309,10 @@ function AssignmentAndQuizButton({ initialVideo }) {
       <>
         {showAssignmentResultModal ? (
           <>
-            <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-primary">
               <div className="relative w-auto my-6 mx-auto">
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-auto bg-white outline-none focus:outline-none bg-primary">
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-auto bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-slate-600/50 rounded-t">
                     <h3 className="text-xl font-semibold">এসাইনমেন্ট ফলাফল</h3>
